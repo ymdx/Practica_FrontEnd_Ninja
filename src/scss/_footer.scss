@@ -1,16 +1,15 @@
 $web-nav-search-font: $titles-font-family;
 $web-header-background-color: $color-primary;
 $web-header-text-color: white;
-
 .footer {
-	font-family: $web-nav-search-font;
-	color: $web-header-text-color;
+    font-family: $web-nav-search-font;
+    color: $web-header-text-color;
     background-color: $web-header-background-color;
-    position: absolute;
-    width: 100%;
-    padding: 10px;
+    position: fixed;
+    bottom: 0px;
     height: 20px;
-    bottom: 0;
+	width: 100%;
+    padding: 10px;
     .footer-title {
         color: $web-header-text-color;
         display: flex;

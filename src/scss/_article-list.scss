@@ -1,0 +1,38 @@
+$body-font-family: $main-font-family;
+.article-list {
+    .article {}
+    .titulo {
+        text-align: center;
+        //text-transform: uppercase;
+        font-size: 21px;
+    }
+    .flex-autor {
+        display: flex;
+        font-family: $web-nav-search-font;
+    }
+    .flex-autor {
+        padding: 0;
+        margin: $web-margin;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+    .autor {
+        text-align: center;
+        text-transform: uppercase;
+        margin-right: 10px;
+    }
+    .autor-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+    .imagenes {
+        width: 100%;
+        padding: 15px;
+        box-sizing: border-box;
+        padding-top: 0px; 
+        padding-bottom: 10px;
+    }
+}
