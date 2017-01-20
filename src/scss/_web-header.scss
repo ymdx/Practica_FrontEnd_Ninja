@@ -1,0 +1,69 @@
+// Variables
+$web-header-background-color: $color-primary;
+$web-header-form-color: $color-secondary;
+$web-header-text-color: white;
+$web-header-title-font: $titles-font-family;
+$web-nav-search-font: $titles-font-family;
+$web-margin: 0;
+// Estilos 
+
+.web-header {
+    background: $web-header-background-color;
+    padding: 10px;
+    z-index: 100;
+    position: relative;
+    .web-title {
+        color: $web-header-text-color;
+        text-align: center;
+        margin: $web-margin;
+        font-family: $web-header-title-font;
+    }
+}
+
+.flex-menu,
+.flex-user,
+.flex-title {
+    display: flex;
+    font-family: $web-nav-search-font;
+    color: $web-header-text-color;
+}
+
+.flex-title {
+    direction: rtl;
+}
+
+.flex-title a {
+    padding: 10px;
+    color: $web-header-text-color;
+}
+
+.flex-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: $web-margin;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.flex-menu a {
+    padding: 0 10px;
+    flex-grow: 1;
+    text-align: center;
+    color: $web-header-text-color;
+}
+
+.flex-user {
+    direction: rtl;
+}
+
+.flex-user a {
+    padding: 10px;
+    color: $web-header-text-color;
+}
+
+.search {
+    width: 100%;
+    padding: 10px 20px;
+    margin: 10px 0;
+    background-color: #d4d2d2;
+}

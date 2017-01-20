@@ -1,0 +1,35 @@
+.clearfix {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin text-overflow-ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+// responsive utilities
+@mixin if-is-large-screen {
+  @media all and (min-width: #{$large-screen-width}) {
+    @content;
+  }
+}
+
+@mixin if-is-medium-screen {
+  @media all and (min-width: #{$medium-screen-width}) {
+    @content;
+  }
+}
+
+@mixin if-is-small-screen {
+  @media all and (max-width: #{$small-screen-width}) {
+    @content;
+  }
+}
