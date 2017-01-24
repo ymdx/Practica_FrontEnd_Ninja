@@ -5,16 +5,24 @@ $web-header-text-color: white;
     font-family: $web-nav-search-font;
     color: $web-header-text-color;
     background-color: $web-header-background-color;
-    position: fixed;
-    bottom: 0px;
+    //position: absolute;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    //bottom: 0%;
     height: 20px;
-	width: 100%;
+    width: 100%;
     padding: 10px;
     .footer-title {
         color: $web-header-text-color;
-        display: flex;
-        justify-content: center;
         margin: 0px;
         font-family: $web-header-title-font;
+    }
+    .go-top {
+        font-family: $web-nav-search-font;
+        color: $web-header-text-color;
+        background-color: $web-header-background-color;
+        margin-left: 10px;
     }
 }
