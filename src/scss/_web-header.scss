@@ -6,6 +6,39 @@ $web-header-title-font: $titles-font-family;
 $web-nav-search-font: $titles-font-family;
 $web-margin: 0;
 // Estilos 
+@include if-is-medium-screen {
+    .web-header {
+        display: flex;
+    }
+    .web-title {
+        font-size: large;
+    }
+    .flex-user {
+        align-items: center;
+        border-right: 1px solid;
+        a {
+            text-decoration: none;
+        }
+    }
+    .flex-title {
+        align-items: center;
+        padding-right: 6px;
+        border-right: 1px solid;
+        margin-right: 3px;
+        a {
+            display: none;
+        }
+    }
+    .flex-menu {
+        align-items: center;
+        a {
+            text-decoration: none;
+        }
+    }
+    .search {
+        order: 1;
+    }
+}
 
 .web-header {
     background: $web-header-background-color;
@@ -18,6 +51,10 @@ $web-margin: 0;
         margin: $web-margin;
         font-family: $web-header-title-font;
     }
+}
+
+.titulo2 {
+    display: none;
 }
 
 .flex-menu,

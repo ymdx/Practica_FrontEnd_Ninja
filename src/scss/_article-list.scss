@@ -1,6 +1,5 @@
 $body-font-family: $main-font-family;
 .article-list {
-    .article {}
     .titulo {
         text-align: center;
         //text-transform: uppercase;
@@ -29,7 +28,7 @@ $body-font-family: $main-font-family;
         border-radius: 50%;
     }
     .imagenes {
-        width: 100%;
+        width: 375px;
         padding: 15px;
         box-sizing: border-box;
         padding-top: 0px;
@@ -56,5 +55,35 @@ $body-font-family: $main-font-family;
     }
     .comentarios {
         margin-right: 10px;
+    }
+}
+
+@include if-is-medium-screen {
+    .imagenes {
+        width: 360px;
+        height: 300px;
+    }
+    .flex-column {
+        width: 360px;
+        float: right;
+    }
+    .titulo{
+        display: none;
+    }
+    .article{
+        margin-top: 17px;
+        margin-right: 20px;
+    }
+    .titulo2{
+        display: block;
+        text-align: center;
+        font-size: 18px;
+        margin-top: 0px;
+    }
+    .text{
+        margin-top: 8px;
+    }
+    .video{
+        margin-top: -45px;
     }
 }
