@@ -37,6 +37,9 @@ $web-margin: 0;
     }
     .search {
         order: 1;
+        &:focus {
+            outline-color: $color-deep-koamaru;
+        }
     }
     .cat {
         display: none;
@@ -112,4 +115,7 @@ $web-margin: 0;
     padding: 10px 20px;
     margin: 10px 0;
     background-color: #d4d2d2;
+    &:focus {
+        outline-color: $color-deep-koamaru;
+    }
 }
