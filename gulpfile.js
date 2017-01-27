@@ -3,6 +3,9 @@ var sass = require('gulp-sass'); // importamos sass
 var notify = require('gulp-notify');
 var browserSync = require('browser-sync').create();
 var concat = require('gulp-concat');
+var browserify = require('browserify');
+var tap = require('gulp-tap');
+var buffer = require('gulp-buffer');
 
 // variables de configuración
 
@@ -20,7 +23,7 @@ var sassConfig = {
 var jsConfig = {
     concatJsTaskName: 'concat-js',
     watchFiles: './src/js/*.js',
-    entryPoint: './src/js/*.js',
+    entryPoint: './src/js/main.js',
     concatFile: 'main.js',
     dest: './dist/'
 };
@@ -68,7 +71,12 @@ gulp.task(sassConfig.compileSassTaskName, function() {
 gulp.task(jsConfig.concatJsTaskName, function() {
 
     gulp.src(jsConfig.entryPoint) // cargo los archivos /js
-        .pipe(concat(jsConfig.concatFile)) // concatenamelos en un solo archivo main.js
+        .pipe(tap(function(file) { // para cada archivo seleccionado
+            // lo pasamos por browserify para importar los require
+            file.contents = browserify(file.path).bundle();
+        }))
+        .pipe(buffer()) // convertimos a buffer para que funcione el siguiente pipe
+        //.pipe(concat(jsConfig.concatFile)) // concatenamelos en un solo archivo main.js
         .pipe(gulp.dest(jsConfig.dest)) // dejo el resultado en ./dist/
         .pipe(notify("JS Concatenado 🤘")) // Notifico que el JS esta concatenado
         .pipe(browserSync.stream()); // recargamos el JS en el navegador

@@ -108,7 +108,7 @@ $body-font-family: $main-font-family;
 
 @include if-is-large-screen {
     .imagenes {
-        width: 600px;
+        width: 435px;
         height: 360px;
     }
     .flex-column {

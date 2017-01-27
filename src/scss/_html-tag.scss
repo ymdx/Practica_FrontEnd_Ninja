@@ -5,14 +5,4 @@ body {
     font-size: $font-size-base;
     margin: 0px;
     padding: 0px;
-
-    @include if-is-small-screen {
-        background-color: red;
-    }
-    @include if-is-medium-screen {
-        background-color: yellow;
-    }
-    @include if-is-large-screen {
-        background-color: green;
-    }
 }
