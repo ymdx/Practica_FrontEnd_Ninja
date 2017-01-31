@@ -6,6 +6,7 @@ var concat = require('gulp-concat');
 var browserify = require('browserify');
 var tap = require('gulp-tap');
 var buffer = require('gulp-buffer');
+var sourcemaps = require('gulp-sourcemaps');
 
 // variables de configuración
 
@@ -58,9 +59,11 @@ gulp.task("default", [sassConfig.compileSassTaskName, jsConfig.concatJsTaskName]
 
 gulp.task(sassConfig.compileSassTaskName, function() {
     gulp.src(sassConfig.entryPoint) // cargo el style.scss
+        .pipe(sourcemaps.init()) // empezamos a capturar los sourcemaps
         .pipe(sass().on('error', function(error) { // compilamos sass
-            return notify().write(error); // si ocurre un error, mostramos notifiación
+            return notify().write(error); // si ocurre un error, mostramos notificación
         }))
+        .pipe(sourcemaps.write('./')) // terminamos con los sourcemaps
         .pipe(gulp.dest(sassConfig.dest)) // dejo el resultado en ./dist/
         .pipe(browserSync.stream()) // recargamos el CSS en el navegador
         .pipe(notify("SASS Compilado 🤘"));
@@ -71,12 +74,16 @@ gulp.task(sassConfig.compileSassTaskName, function() {
 gulp.task(jsConfig.concatJsTaskName, function() {
 
     gulp.src(jsConfig.entryPoint) // cargo los archivos /js
+    .pipe(sourcemaps.init()) // empezamos a capturar los sourcemaps
         .pipe(tap(function(file) { // para cada archivo seleccionado
             // lo pasamos por browserify para importar los require
-            file.contents = browserify(file.path).bundle();
+            file.contents = browserify(file.path).bundle().on('error',function(error){
+                return notify().write(error); // si ocurre un error js notificación
+            });
         }))
         .pipe(buffer()) // convertimos a buffer para que funcione el siguiente pipe
         //.pipe(concat(jsConfig.concatFile)) // concatenamelos en un solo archivo main.js
+        .pipe(sourcemaps.write('./')) // terminamos con los sourcemaps
         .pipe(gulp.dest(jsConfig.dest)) // dejo el resultado en ./dist/
         .pipe(notify("JS Concatenado 🤘")) // Notifico que el JS esta concatenado
         .pipe(browserSync.stream()); // recargamos el JS en el navegador
