@@ -62,7 +62,9 @@ $body-font-family: $main-font-family;
     filter: grayscale(100%);
 }
 
-.heart:active {
+.boton {
+    height: 50px;
+    border: 1px solid;
     filter: grayscale(0%);
 }
 
@@ -104,6 +106,15 @@ $body-font-family: $main-font-family;
     .cat {
         display: none;
     }
+    .heart {
+        height: 34px;
+        filter: grayscale(100%);
+    }
+    .boton {
+        height: 50px;
+        border: 1px solid;
+        filter: grayscale(0%);
+    }
 }
 
 @include if-is-large-screen {
@@ -141,5 +152,14 @@ $body-font-family: $main-font-family;
     }
     .cat {
         display: block;
+    }
+    .heart {
+        height: 34px;
+        filter: grayscale(100%);
+    }
+    .boton {
+        height: 50px;
+        border: 1px solid;
+        filter: grayscale(0%);
     }
 }

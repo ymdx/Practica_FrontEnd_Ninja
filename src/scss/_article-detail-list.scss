@@ -1,5 +1,4 @@
 $body-font-family: $main-font-family;
-
 @include if-is-small-screen {
     .detail-titulo {
         text-align: center;
@@ -48,7 +47,9 @@ $body-font-family: $main-font-family;
         height: 34px;
         filter: grayscale(100%);
     }
-    .heart:active {
+    .boton {
+        height: 50px;
+        border: 1px solid;
         filter: grayscale(0%);
     }
     .comentarios {
@@ -66,7 +67,7 @@ $body-font-family: $main-font-family;
     }
     .detail-flex-column {
         width: 100%;
-        display:flex;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -105,7 +106,7 @@ $body-font-family: $main-font-family;
     .cat {
         display: none;
     }
-    .pagination{
+    .pagination {
         display: block;
     }
 }
@@ -120,7 +121,7 @@ $body-font-family: $main-font-family;
     }
     .detail-flex-column {
         width: 100%;
-        display:flex;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -159,7 +160,7 @@ $body-font-family: $main-font-family;
     .cat {
         display: block;
     }
-    .pagination{
+    .pagination {
         display: block;
     }
 }

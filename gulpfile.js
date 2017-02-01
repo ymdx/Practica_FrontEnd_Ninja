@@ -74,15 +74,15 @@ gulp.task(sassConfig.compileSassTaskName, function() {
 gulp.task(jsConfig.concatJsTaskName, function() {
 
     gulp.src(jsConfig.entryPoint) // cargo los archivos /js
-    .pipe(sourcemaps.init()) // empezamos a capturar los sourcemaps
         .pipe(tap(function(file) { // para cada archivo seleccionado
             // lo pasamos por browserify para importar los require
-            file.contents = browserify(file.path).bundle().on('error',function(error){
+            file.contents = browserify(file.path, { debug:true }).bundle().on('error',function(error){
                 return notify().write(error); // si ocurre un error js notificación
             });
         }))
         .pipe(buffer()) // convertimos a buffer para que funcione el siguiente pipe
         //.pipe(concat(jsConfig.concatFile)) // concatenamelos en un solo archivo main.js
+        .pipe(sourcemaps.init( { loadMaps: true } )) // empezamos a capturar los sourcemaps
         .pipe(sourcemaps.write('./')) // terminamos con los sourcemaps
         .pipe(gulp.dest(jsConfig.dest)) // dejo el resultado en ./dist/
         .pipe(notify("JS Concatenado 🤘")) // Notifico que el JS esta concatenado
