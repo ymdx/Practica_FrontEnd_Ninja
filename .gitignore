@@ -3,3 +3,7 @@ node_modules/
 
 # archivos de distribución
 dist/
+
+# base de datos
+
+db/

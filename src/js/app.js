@@ -1,6 +1,20 @@
 var $ = require('jquery');
 var moment = require('moment');
 
+var comments = require('./comments');
+var commentsManager = require('./commentsManager');
+
+var form = $(".form");
+
+var stateButton = {
+    enabled: function() {
+        form.find("button").text("Add Comment").attr("disabled", false);
+    },
+    disabled: function() {
+        form.find("button").text("Saving Comment...").attr("disabled", true);
+    }
+}
+
 // scroll hasta el top de la pagina 
 
 $(".go").on("click", function() {
@@ -48,8 +62,7 @@ if (typeof(Storage) !== "undefined") { // si son soportados localStorage y sessi
     var a = localStorage.getItem('arraylikes');
     if (a == 0) { // si no tenemos elementos guardados :
         console.log("No tienes elementos guardados");
-    } 
-    else {
+    } else {
         a = a.split(',');
         for (i in a) {
             var elemento = a[i];
@@ -62,4 +75,64 @@ if (typeof(Storage) !== "undefined") { // si son soportados localStorage y sessi
 
 } else {
     console.log("No es soportado el Web Storage");
+}
+
+
+// formulario : 
+
+$(".form").on("submit", function(e) {
+    if ($("#nombre")[0].checkValidity() == false) {
+        alert("Escribe tu nombre correctamente");
+        $("#nombre").focus();
+        e.preventDefault();
+        return false;
+    }
+
+    if ($("#apellidos")[0].checkValidity() == false) {
+        alert("Escribe tus apellidos correctamente");
+        $("#apellidos").focus();
+        e.preventDefault();
+        return false;
+    }
+
+    if ($("#email")[0].checkValidity() == false) {
+        alert("Escribe tu email correctamente");
+        $("#email").focus();
+        e.preventDefault();
+        return false;
+    }
+
+    if (cuentaPalabras($("textarea#texto").val()) > 120) {
+        alert('Máximo 120 palabras');
+        $("#texto").focus();
+        e.preventDefault();
+        return false;
+    }
+
+    var datos = {
+        nombre: $("#nombre").val(),
+        apellidos: $("#apellidos").val(),
+        email: $("#email").val(),
+        texto: $("textarea#texto").val()
+    }
+
+    comments.guardar(datos, function(data) {
+        alert("Thank you");
+        stateButton.enabled();
+        commentsManager.cargarComentarios();
+        alert("Thank you2");
+    }, function(error) {
+        alert("error");
+        stateButton.enabled();
+    });
+
+
+
+});
+
+function cuentaPalabras(f) {
+    var quitarEspacios = f.replace(/\s\s+/g, ' ').trim();
+    var arrayPalabras = quitarEspacios.split(' ');
+    var numeroPalabras = arrayPalabras.length;
+    return numeroPalabras;
 }

@@ -33,7 +33,7 @@
             <a href="#c11" class="cat">Video</a>
         </nav>
     </header>
-    <section class="article-list">
+    <section class="article-list" id="article-list">
         <article class="detail-article">
             <p class="detail-titulo">¿ Qué tono de bronceado se lleva este verano ?</p>
             <img class="detail-imagen" src='https://image.freepik.com/free-photo/sunglasses-on-the-sand_1169-59.jpg'>
@@ -46,20 +46,31 @@
                 <p class="detail-text"><em>Para que puedas relajarte completamente y disfrutar de tus vacaciones, te contamos 15 mitos sobre el bronceado de verano para que te pongas moreno sin arriesgar tu salud.</em></p>
             </p>
             <p class="hora">Hora de publicación</p>
-            <div class="flex-autor">
-                <span class="comentarios">COMENTARIOS</span>
-            </div>
-            </div>
+            <form id="form" class="form" name="form" novalidate>
+                <div class="flex-formulario2">
+                    <div class="ui-ideal">
+                        <ul class="lista-comentarios"></ul>
+                    </div>
+                    <div class="ui-error">ERROR EN LOS COMENTARIOS</div>
+                    <div class="ui-blanco">
+                        <p>No tenemos comentarios cargados</p>
+                    </div>
+                    <div class="ui-loading"></div>
+                </div>
+                <div class="flex-formulario">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" required>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" placeholder="name@company.com" pattern="[A-Za-z0-9\.\+]+@[A-Za-z0-9]+\.[A-Za-z0-9\.]+" required>
+                    <label for="textarea">Comentarios:</label>
+                    <textarea id="texto" cols="20" rows="10" required></textarea>
+                    <br> Palabras: <span id="quedan">120</span>
+                    <button type="submit" id="enviar">Enviar</button>
+                </div>
+            </form>
         </article>
-        <div class="pagination">
-            <ul class="pag-list">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-            </ul>
-        </div>
     </section>
     <footer class="footer">
         <h5 class="footer-title">ADVENTURE WORDS &copy; 2017</h5>

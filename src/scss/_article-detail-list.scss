@@ -55,6 +55,19 @@ $body-font-family: $main-font-family;
     .comentarios {
         margin-right: 10px;
     }
+    .flex-formulario {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    .flex-formulario2 {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    label{
+        margin: 3px 0px 3px 0px;
+    }
 }
 
 @include if-is-medium-screen {
@@ -109,6 +122,20 @@ $body-font-family: $main-font-family;
     .pagination {
         display: block;
     }
+
+    .flex-formulario {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    .flex-formulario2 {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    label{
+        margin: 3px 0px 3px 0px;
+    }
 }
 
 @include if-is-large-screen {
@@ -162,5 +189,19 @@ $body-font-family: $main-font-family;
     }
     .pagination {
         display: block;
+    }
+
+    .flex-formulario {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    .flex-formulario2 {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    label{
+        margin: 3px 0px 3px 0px;
     }
 }

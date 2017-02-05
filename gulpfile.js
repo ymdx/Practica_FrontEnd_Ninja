@@ -36,7 +36,8 @@ gulp.task("default", [sassConfig.compileSassTaskName, jsConfig.concatJsTaskName]
     // arrancar el servidor de browser sync
 
     browserSync.init({
-        server: "./"
+        //server: "./"
+        proxy: "127.0.0.1:8000" // conectar browsersync con sparrest
     });
 
     // cuando haya cambios en archivos scss, compila sass
