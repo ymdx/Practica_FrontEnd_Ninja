@@ -3,41 +3,47 @@ var manager = require('./comments');
 
 module.exports = {
 
-    setUiIdeal: function() {
-        $('.flex-formulario2').removeClass().addClass('flex-formulario2 ideal');
+    setLoading: function() {
+        $('.flex-formulario2').removeClass().addClass('flex-formulario2 loading');
     },
-
-    setUiBlanco: function() {
-        $('.flex-formulario2').removeClass().addClass('flex-formulario2 blanco');
-    },
-
-    setUiError: function() {
+    setError: function() {
         $('.flex-formulario2').removeClass().addClass('flex-formulario2 error');
     },
 
-    setUiLoading: function() {
-        $('.flex-formulario2').removeClass().addClass('flex-formulario2 loading');
+    setIdeal: function() {
+        $('.flex-formulario2').removeClass().addClass('flex-formulario2 ideal');
+    },
+
+    setBlanco: function() {
+        $('.flex-formulario2').removeClass().addClass('flex-formulario2 blanco');
     },
 
     cargarComentarios: function() {
         var self = this;
-        self.setUiLoading();
+        //self.setLoading(); 
         manager.obtener(function(comments) { // si nos devuelve comentarios
             if (comments.length == 0) {
-                self.setUiBlanco();
+                //console.log("No tenemos comentarios");
+                self.setBlanco();
             } else {
-                self.renderComments(comments);
-                self.setUiIdeal();
+                //console.log("Tenemos comentarios");
+                self.setIdeal();
+                self.ponerComentarios(comments);
+                //self.setIdeal();
             }
         }, function(error) {
-            self.setUiError();
+            self.setError();
         });
     },
 
     ponerComentarios: function(comments) {
         var contentToAdd = '';
         for (var i = 0; i < comments.length; i++) {
-            contentToAdd += '<div id="comment">' + comments[i].nombre + '&nbsp' + comments[i].apellidos + '</div>' + '<li id="new-comment">' + comments[i].texto + '</li>';
+            contentToAdd += '<div id="comment">' +
+                comments[i].nombre + '&nbsp' + comments[i].apellidos +
+                '<br>' + '(' + comments[i].email + ')' +
+                '</div>' + '<li id="new-comment">' +
+                comments[i].texto + '</li>';
         }
         $(".lista-comentarios").empty();
         $(".lista-comentarios").append(contentToAdd);

@@ -1,4 +1,13 @@
 $body-font-family: $main-font-family;
+@keyframes cargando {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 @include if-is-small-screen {
     .detail-titulo {
         text-align: center;
@@ -64,8 +73,58 @@ $body-font-family: $main-font-family;
         padding: 20px;
         display: flex;
         flex-direction: column;
+        div[class^="ui-"] {
+            display: none;
+        }
+        &.loading .ui-loading {
+            // estado de carga...
+            display: block;
+            animation: cargando 1s linear infinite;
+            width: 10px;
+            height: 10px;
+            align-self: center;
+            border: 5px solid #462255;
+            border-top: 5px solid $main-text-color;
+            border-radius: 50%;
+            margin-botton: 10px;
+        }
+        //estado ideal
+        &.ideal .ui-ideal {
+            display: block;
+            margin: 10px;
+        }
+        // estado en blanco vacío
+        &.blank .ui-blank {
+            display: block;
+            align-self: center;
+        }
+        // estado error
+        &.error .ui-error {
+            display: block;
+            align-self: center;
+            margin-bottom: 20px;
+        }
     }
-    label{
+    .lista-comentarios {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+    #comment {
+        display: flex;
+        // padding: 10px 0;
+        width: auto;
+        //color: $color-elven-song;
+        font-size: $font-size-base;
+        @include if-is-medium-screen {
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+        @include if-is-large-screen {
+            width: 1024px;
+        }
+    }
+    label {
         margin: 3px 0px 3px 0px;
     }
 }
@@ -122,7 +181,6 @@ $body-font-family: $main-font-family;
     .pagination {
         display: block;
     }
-
     .flex-formulario {
         padding: 20px;
         display: flex;
@@ -133,8 +191,18 @@ $body-font-family: $main-font-family;
         display: flex;
         flex-direction: column;
     }
-    label{
+    label {
         margin: 3px 0px 3px 0px;
+    }
+    #comment {
+        display: flex;
+        width: auto;
+        font-size: $font-size-base + 2;
+        margin-left: 30px;
+        margin-right: 30px;
+        @include if-is-large-screen {
+            width: 1024px;
+        }
     }
 }
 
@@ -190,7 +258,6 @@ $body-font-family: $main-font-family;
     .pagination {
         display: block;
     }
-
     .flex-formulario {
         padding: 20px;
         display: flex;
@@ -201,7 +268,14 @@ $body-font-family: $main-font-family;
         display: flex;
         flex-direction: column;
     }
-    label{
+    label {
         margin: 3px 0px 3px 0px;
+    }
+    #comment {
+        display: flex;
+        width: 1024px;
+        font-size: $font-size-base + 2;
+        margin-left: 30px;
+        margin-right: 30px;
     }
 }

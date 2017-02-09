@@ -6,15 +6,6 @@ var commentsManager = require('./commentsManager');
 
 var form = $(".form");
 
-var stateButton = {
-    enabled: function() {
-        form.find("button").text("Add Comment").attr("disabled", false);
-    },
-    disabled: function() {
-        form.find("button").text("Saving Comment...").attr("disabled", true);
-    }
-}
-
 // scroll hasta el top de la pagina 
 
 $(".go").on("click", function() {
@@ -22,6 +13,24 @@ $(".go").on("click", function() {
     $("html, body").animate({
         scrollTop: posicion
     }, 3000);
+});
+
+// scroll hasta los comentarios
+
+var control = false;
+
+$(window).on("scroll", function(e) {
+    var posicionFlexbox2 = $(".flex-formulario2").offset().top;
+    //console.log(posicionFlexbox2);
+    //console.log($(window).scrollTop() + $(window).height());
+    if ((control == false) && $(window).scrollTop() + $(window).height() >= posicionFlexbox2) {
+        control = true; // Ponemos que se han cargado los comentarios 
+        commentsManager.cargarComentarios(); // Cargamos los comentarios
+    } else {
+        commentsManager.setLoading();
+        control = false;
+        return false; // aqui no funciona el e.stopPropagation, ni el e.preventDefault...
+    }
 });
 
 // Fecha
@@ -77,7 +86,6 @@ if (typeof(Storage) !== "undefined") { // si son soportados localStorage y sessi
     console.log("No es soportado el Web Storage");
 }
 
-
 // formulario : 
 
 $(".form").on("submit", function(e) {
@@ -117,16 +125,13 @@ $(".form").on("submit", function(e) {
     }
 
     comments.guardar(datos, function(data) {
-        alert("Thank you");
-        stateButton.enabled();
         commentsManager.cargarComentarios();
-        alert("Thank you2");
+        alert("Thank you for post your comment");
     }, function(error) {
         alert("error");
-        stateButton.enabled();
     });
 
-
+    return false;
 
 });
 
