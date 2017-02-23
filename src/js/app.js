@@ -33,14 +33,35 @@ $(window).on("scroll", function(e) {
     }
 });
 
+// --------------------------------------
+
 // Fecha
 
-var initialDate = new Date();
+// Fecha que metemos en el datetime y lo pasamos a una variable en formato moment().
 
-var ahora = moment(initialDate).fromNow();
+var initialDate = $('time').attr("datetime"); 
+var fechaInicial = moment(initialDate);
 
-$(".hora").append("  " + ahora);
+// Creamos la fecha actual de nuestra maquina para comparar
 
+var fechaActual = new Date();
+
+// Comparamos las dos fechas con diff 
+
+if( (fechaInicial.diff(fechaActual),'days') > 1 ){
+    // Formateamos la fecha con los distintos string que nos da calendar().
+    fechaInicial = fechaInicial.calendar();
+ }
+ else{ 
+    // Formateamos la fecha con fromNow().
+    fechaInicial = fechaInicial.fromNow();
+}
+
+// Reemplazamos el texto FECHA HUMANOS por la hora
+
+$('time').text(fechaInicial);
+
+// --------------------------------------
 
 // Web Storage: 
 

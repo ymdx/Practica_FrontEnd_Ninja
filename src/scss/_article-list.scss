@@ -72,6 +72,10 @@ $body-font-family: $main-font-family;
     margin-right: 10px;
 }
 
+time{
+    margin: 16px 0px 16px 0px;
+}
+
 @include if-is-medium-screen {
     .imagenes {
         width: 360px;
