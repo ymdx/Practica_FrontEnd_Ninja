@@ -39,27 +39,29 @@ $(window).on("scroll", function(e) {
 
 // Fecha que metemos en el datetime y lo pasamos a una variable en formato moment().
 
-var initialDate = $('time').attr("datetime"); 
-var fechaInicial = moment(initialDate);
+$('time').each(function() {
 
-// Creamos la fecha actual de nuestra maquina para comparar
+    var initialDate = $(this).attr("datetime");
+    var fechaInicial = moment(initialDate);
 
-var fechaActual = new Date();
+    // Creamos la fecha actual de nuestra maquina para comparar
 
-// Comparamos las dos fechas con diff 
+    var fechaActual = new Date();
 
-if( (fechaInicial.diff(fechaActual),'days') > 1 ){
-    // Formateamos la fecha con los distintos string que nos da calendar().
-    fechaInicial = fechaInicial.calendar();
- }
- else{ 
-    // Formateamos la fecha con fromNow().
-    fechaInicial = fechaInicial.fromNow();
-}
+    // Comparamos las dos fechas con diff 
 
-// Reemplazamos el texto FECHA HUMANOS por la hora
+    if ((fechaInicial.diff(fechaActual), 'days') > 1) {
+        // Formateamos la fecha con los distintos string que nos da calendar().
+        fechaInicial = fechaInicial.calendar();
+    } else {
+        // Formateamos la fecha con fromNow().
+        fechaInicial = fechaInicial.fromNow();
+    }
 
-$('time').text(fechaInicial);
+    // Reemplazamos el texto FECHA HUMANOS por la hora
+
+    $(this).text(fechaInicial);
+});
 
 // --------------------------------------
 
